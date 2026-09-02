@@ -1,0 +1,67 @@
+# TinyMobLevels 怪物等级系统 配置
+settings:
+  enabled: true                  # 插件总开关
+  level-source: random           # 等级来源: random=随机(默认) | distance=离出生点每1000米+1级(10级=10000米外)，二选一
+  hostile-only: true             # 只给敌对怪分级（true）；false=所有怪都分级
+  level-display: true            # 头顶显示等级 [Lv.N]
+  level-hide-no-los: true        # 玩家看不到怪物本体时（视线被挡，如在洞穴/墙后）隐藏头顶信息，防透视（true=隐藏）
+  level-particle: true           # 高等级(5+)带附魔粒子光效（可选）
+  particle-min-level: 5          # 粒子光效最低等级（默认5级开始）
+
+# 1-10 级数值表（血量/攻击/防御 = 原版倍数；防御=伤害÷倍数）
+levels:
+  1:  { health: 1.6, attack: 1.4, defense: 1.2 }
+  2:  { health: 1.9, attack: 1.8, defense: 1.5 }
+  3:  { health: 2.4, attack: 2.3, defense: 1.8 }
+  4:  { health: 3.0, attack: 2.8, defense: 2.5 }
+  5:  { health: 4.6, attack: 3.5, defense: 3.0 }
+  6:  { health: 6.0, attack: 4.0, defense: 4.0 }
+  7:  { health: 7.2, attack: 4.9, defense: 4.9 }
+  8:  { health: 8.4, attack: 5.6, defense: 5.6 }
+  9:  { health: 9.2, attack: 6.4, defense: 6.4 }
+  10: { health: 10.0, attack: 7.0, defense: 7.0 }
+
+# 装备配置（按等级；武器/护甲独立掷骰；"全套"随机1-4件）
+equipment:
+  1: { weapon: { material: NONE, chance: 0 }, armor: { material: NONE, chance: 0 } }
+  2: { weapon: { material: WOODEN_SWORD, chance: 0.2 }, armor: { material: LEATHER, chance: 0.6 } }
+  3: { weapon: { material: WOODEN_SWORD, chance: 0.4 }, armor: { material: LEATHER, chance: 0.8 } }
+  4: { weapon: { material: IRON_SWORD, chance: 0.4 }, armor: { material: CHAINMAIL_OR_GOLD, chance: 0.7 } }
+  5: { weapon: { material: IRON_SWORD, chance: 0.5 }, armor: { material: IRON, chance: 0.2 } }
+  6: { weapon: { material: IRON_SWORD, chance: 0.7, enchant: SHARPNESS, level: 2 }, armor: { material: IRON, chance: 0.4, enchant: PROTECTION, level: 3 } }
+  7: { weapon: { material: IRON_SWORD, chance: 1.0, enchant: SHARPNESS, level: 3 }, armor: { material: IRON, chance: 0.6, enchant: PROTECTION, level: 4 } }
+  8: { weapon: { material: DIAMOND_SWORD, chance: 1.0, enchant: SHARPNESS, level: 3 }, armor: { material: DIAMOND, chance: 0.7, enchant: PROTECTION, level: 4 } }
+  9: { weapon: { material: DIAMOND_SWORD, chance: 1.0, enchant: SHARPNESS, level: 3 }, armor: { material: DIAMOND, chance: 0.8, enchant: PROTECTION, level: 4 } }
+  10: { weapon: { material: DIAMOND_SWORD, chance: 1.0, enchant: SHARPNESS, level: 3 }, armor: { material: DIAMOND, chance: 0.9, enchant: PROTECTION, level: 4 } }
+
+# 金币掉落（击杀时直接进玩家钱包，需经济插件；每级最小-最大）
+economy:
+  enabled: true                  # 是否启用金币掉落（装了经济插件才有效）
+  coin-name: 金币
+  coins:
+    1:  { min: 1, max: 2 }
+    2:  { min: 2, max: 4 }
+    3:  { min: 3, max: 6 }
+    4:  { min: 5, max: 8 }
+    5:  { min: 7, max: 10 }
+    6:  { min: 10, max: 15 }
+    7:  { min: 13, max: 18 }
+    8:  { min: 15, max: 22 }
+    9:  { min: 18, max: 25 }
+    10: { min: 20, max: 30 }
+
+# 经验掉落（可选，默认关；开启则击杀经验按倍率给）
+exp:
+  enabled: false                 # 是否让等级怪的经验随等级变化
+  multiplier-per-level: 0.5      # 每级经验倍率增量（如 0.5=每级+50%，10级=6倍原版经验）
+
+# 掉落配置（自定义掉落，物品英文名+数量+概率；留空=默认原版掉落）
+# 例：drops.5.items: [ { item: DIAMOND, amount: 1, chance: 0.1 }, { item: GOLD_INGOT, amount: 2, chance: 0.2 } ]
+drops: {}
+
+messages:
+  prefix: "&7[&c怪物&7] &r"
+  no-permission: "&c你没有权限这么做。"
+  spawn-ok: "&a已召唤 {count} 只 {level} 级 {mob}。"
+  reloaded: "&a配置已重载。"
+  coin-earned: "&a击杀奖励 +{coins} {name}"
