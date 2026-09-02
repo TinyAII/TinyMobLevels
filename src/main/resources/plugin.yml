@@ -1,0 +1,21 @@
+name: TinyMobLevels
+version: 1.0.0
+main: nl.tinyaii.tinymoblevels.TinyMobLevelsPlugin
+api-version: 1.16
+author: TinyAII
+description: 怪物等级系统 - 所有敌对怪1-10级分级，血量/攻击/防御/装备，金币掉落
+website: https://github.com/TinyAII
+softdepend: [Economy, Vault]
+
+commands:
+  怪物:
+    aliases: [mob, moblevels]
+    description: 怪物等级系统主命令
+    usage: /怪物 <子命令>
+permissions:
+  moblevels.use:
+    description: 使用怪物等级命令（查等级/掉落配置）
+    default: true
+  moblevels.admin:
+    description: 怪物等级管理（召唤指定等级怪/重载）
+    default: op
