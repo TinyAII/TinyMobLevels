@@ -154,11 +154,11 @@ public class MobLevelListener implements Listener {
 
     private void applyArmorPieces(LivingEntity entity, LevelConfig.ArmorConfig ac, int pieces) {
         // 头盔/胸甲/护腿/靴子
-        String[][] map = armorMap(ac.material);
+        String[] map = armorMap(ac.material);
         int applied = 0;
         for (int i = 0; i < 4 && applied < pieces; i++) {
             if (random.nextBoolean() || applied == pieces - 1) {
-                Material mat = Material.matchMaterial(map[i][0]);
+                Material mat = Material.matchMaterial(map[i]);
                 if (mat == null) continue;
                 ItemStack armor = new ItemStack(mat);
                 if (!ac.enchant.isEmpty()) {
@@ -173,13 +173,13 @@ public class MobLevelListener implements Listener {
         }
     }
 
-    private String[][] armorMap(String material) {
+    private String[] armorMap(String material) {
         switch (material) {
-            case "LEATHER": return new String[][]{{"LEATHER_HELMET", "LEATHER_CHESTPLATE", "LEATHER_LEGGINGS", "LEATHER_BOOTS"}, {"0","1","2","3"}};
-            case "IRON": return new String[][]{{"IRON_HELMET", "IRON_CHESTPLATE", "IRON_LEGGINGS", "IRON_BOOTS"}, {"0","1","2","3"}};
-            case "CHAINMAIL_OR_GOLD": return new String[][]{{"CHAINMAIL_HELMET", "GOLDEN_CHESTPLATE", "CHAINMAIL_LEGGINGS", "GOLDEN_BOOTS"}, {"0","1","2","3"}};
-            case "DIAMOND": return new String[][]{{"DIAMOND_HELMET", "DIAMOND_CHESTPLATE", "DIAMOND_LEGGINGS", "DIAMOND_BOOTS"}, {"0","1","2","3"}};
-            default: return new String[][]{{"LEATHER_HELMET", "LEATHER_CHESTPLATE", "LEATHER_LEGGINGS", "LEATHER_BOOTS"}, {"0","1","2","3"}};
+            case "LEATHER": return new String[]{"LEATHER_HELMET", "LEATHER_CHESTPLATE", "LEATHER_LEGGINGS", "LEATHER_BOOTS"};
+            case "IRON": return new String[]{"IRON_HELMET", "IRON_CHESTPLATE", "IRON_LEGGINGS", "IRON_BOOTS"};
+            case "CHAINMAIL_OR_GOLD": return new String[]{"CHAINMAIL_HELMET", "GOLDEN_CHESTPLATE", "CHAINMAIL_LEGGINGS", "GOLDEN_BOOTS"};
+            case "DIAMOND": return new String[]{"DIAMOND_HELMET", "DIAMOND_CHESTPLATE", "DIAMOND_LEGGINGS", "DIAMOND_BOOTS"};
+            default: return new String[]{"LEATHER_HELMET", "LEATHER_CHESTPLATE", "LEATHER_LEGGINGS", "LEATHER_BOOTS"};
         }
     }
 
